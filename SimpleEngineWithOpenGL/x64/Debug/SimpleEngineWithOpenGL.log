@@ -1,0 +1,11 @@
+﻿  Cube.cpp
+D:\GarciaTD4\SimpleEngineWithOpenGL\SimpleEngineWithOpenGL\Cube.cpp(26,21): warning C4305: '*=' : troncation de 'double' à 'float'
+D:\GarciaTD4\SimpleEngineWithOpenGL\SimpleEngineWithOpenGL\Cube.cpp(39,43): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+D:\GarciaTD4\SimpleEngineWithOpenGL\SimpleEngineWithOpenGL\Cube.cpp(39,35): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+D:\GarciaTD4\SimpleEngineWithOpenGL\SimpleEngineWithOpenGL\Cube.cpp(61,36): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+D:\GarciaTD4\SimpleEngineWithOpenGL\SimpleEngineWithOpenGL\Cube.cpp(61,28): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+D:\GarciaTD4\SimpleEngineWithOpenGL\SimpleEngineWithOpenGL\Cube.cpp(62,29): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+D:\GarciaTD4\SimpleEngineWithOpenGL\SimpleEngineWithOpenGL\Cube.cpp(62,21): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+D:\GarciaTD4\SimpleEngineWithOpenGL\SimpleEngineWithOpenGL\Cube.cpp(73,37): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+D:\GarciaTD4\SimpleEngineWithOpenGL\SimpleEngineWithOpenGL\Cube.cpp(73,29): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+  SimpleEngineWithOpenGL.vcxproj -> D:\GarciaTD4\SimpleEngineWithOpenGL\x64\Debug\SimpleEngineWithOpenGL.exe
