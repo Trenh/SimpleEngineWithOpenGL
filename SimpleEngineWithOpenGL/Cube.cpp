@@ -3,7 +3,7 @@
 #include "MoveComponent.h"
 #include "Assets.h"
 
-Cube::Cube() : Actor(), moveComponent(nullptr),ratioRota(0.0),rotation(true),distanceLaunch(Vector2())
+Cube::Cube() : Actor(), moveComponent(nullptr),ratioRota(Vector2()),rotation(true),distanceLaunch(Vector2())
 {
 	MeshComponent* mc = new MeshComponent(this);
 	mc->setMesh(Assets::getMesh("Mesh_Cube"));
@@ -17,17 +17,18 @@ void Cube::updateActor(float deltaTime)
 	if (rotation) 
 	{
 
-		Quaternion q(Vector3::unitZ, ratioRota);
-
+		Quaternion q(Vector3::unitZ, ratioRota.x);
 		setRotation(Quaternion::concatenate(getRotation(), q));
+		setRotation(Quaternion::concatenate(getRotation(), Quaternion(Vector3::unitY, ratioRota.y)));
+
 		//if ratio rota isn't small 
 		// multiply by 0.99 each frame
-		if (Maths::abs( ratioRota)>0.01) {
+		if (Maths::abs( ratioRota.length())>0.01) {
 			ratioRota *= 0.99;
 		//	printf("%d",ratioRota);
 		}
 		else {
-			ratioRota = 0;
+			ratioRota = Vector2();
 		}
 	}
 	else
@@ -37,15 +38,18 @@ void Cube::updateActor(float deltaTime)
 		SDL_GetMouseState(&xMouse, &yMouse);
 		dt += deltaTime;
 		 Vector2 currentRota =  Vector2(xMouse, yMouse);
-		 float length = (midRota - currentRota).length() / 1000 * ((currentRota - midRota).x < 0 ? 1 : -1);
-		Quaternion q(Vector3::unitZ,length);
+		 float lengthX = (midRota - currentRota).x / 1000 ;
+		 float lengthY = (midRota - currentRota).y/1000;
+		Quaternion q(Vector3::unitZ,lengthX);
 		setRotation(Quaternion::concatenate(getRotation(), q));
+		setRotation(Quaternion::concatenate(getRotation(), Quaternion (Vector3::unitY, lengthY)));
+
 		midRota = currentRota;
 	}
 }
 
 
-void Cube::setRatioRota(float ratioRotaP)
+void Cube::setRatioRota(Vector2 ratioRotaP)
 {
 	ratioRota = ratioRotaP;
 }
@@ -73,7 +77,8 @@ void Cube::actorInput(SDL_MouseButtonEvent& mouseEvent)
 		distanceLaunch -= Vector2(xMouse, yMouse);
 
 		// set le ratio de rotation en fonction de la distance et de la vitesse de lancer
-		setRatioRota((distanceLaunch.length()/5000*(distanceLaunch.x < 0 ?-1:1))*((1-dt) >0 ? (1 - dt): 0));
+		setRatioRota(Vector2((distanceLaunch.x/5000)*((1-dt) >0 ? (1 - dt): 0)
+			, (distanceLaunch.y/ 5000 ) * ((1 - dt) > 0 ? (1 - dt) : 0)));
 		distanceLaunch = Vector2();
 	}
 }
